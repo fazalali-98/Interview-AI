@@ -5,7 +5,7 @@
 
 ![Made with React](https://img.shields.io/badge/Frontend-React-61DAFB?style=flat-square&logo=react)
 ![Node.js](https://img.shields.io/badge/Backend-Node.js-339933?style=flat-square&logo=node.js)
-![Claude AI](https://img.shields.io/badge/AI-Claude%20API-D97706?style=flat-square)
+![Groq AI](https://img.shields.io/badge/AI-Groq%20API-F55036?style=flat-square)
 ![MySQL](https://img.shields.io/badge/Database-MySQL-4479A1?style=flat-square&logo=mysql)
 
 ---
@@ -28,7 +28,7 @@ You pick a role. The AI interviews you. It scores every answer. You either impro
 |-------|------|
 | Frontend | React + Custom CSS |
 | Backend | Node.js + Express |
-| AI Brain | Claude API (Anthropic) |
+| AI Brain | Groq API (LLaMA 3) |
 | Database | MySQL via XAMPP |
 
 ---
@@ -52,7 +52,7 @@ npm install
 
 Edit `.env`:
 ```env
-ANTHROPIC_API_KEY=your_key_here
+GROQ_API_KEY=your_key_here
 DB_HOST=localhost
 DB_USER=root
 DB_PASSWORD=        # leave blank for XAMPP default
@@ -121,9 +121,9 @@ ai-interview-simulator/
 
 ---
 
-## 🔑 Get Your Claude API Key
+## 🔑 Get Your Groq API Key
 
-1. Go to [console.anthropic.com](https://console.anthropic.com)
+1. Go to [console.groq.com](https://console.groq.com)
 2. Sign up / Log in
 3. **API Keys** → Create Key
 4. Paste into `backend/.env`
