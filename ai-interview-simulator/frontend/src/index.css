@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap');
+
+:root {
+  --bg: #020a02;
+  --surface: rgba(5, 18, 5, 0.9);
+  --surface2: rgba(8, 22, 8, 0.95);
+  --surface3: #0a1e0a;
+  --border: #0f2a0f;
+  --border2: #174017;
+  --accent: #00e040;
+  --accent2: #5fff8a;
+  --accent-glow: rgba(0, 224, 64, 0.18);
+  --green: #00e676;
+  --green-dim: rgba(0, 230, 118, 0.12);
+  --yellow: #ffd740;
+  --yellow-dim: rgba(255, 215, 64, 0.12);
+  --red: #ff5252;
+  --red-dim: rgba(255, 82, 82, 0.12);
+  --text: #ffffff;
+  --text2: #b0b0b0;
+  --text3: #666666;
+  --radius: 14px;
+  --radius-sm: 8px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.8);
+  --shadow-accent: 0 4px 32px rgba(0, 224, 64, 0.3);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  min-height: 100vh;
+  background-image: 
+    radial-gradient(ellipse 90% 55% at 50% 38%, rgba(0, 160, 40, 0.22) 0%, rgba(0, 80, 15, 0.10) 45%, transparent 70%),
+    radial-gradient(ellipse 45% 28% at 50% 32%, rgba(0, 210, 60, 0.13) 0%, transparent 60%);
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Syne', sans-serif;
+  line-height: 1.2;
+  color: #ffffff;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--surface); }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+
+.card {
+  background: rgba(5, 16, 5, 0.85);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius);
+  padding: 24px;
+  backdrop-filter: blur(8px);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: var(--radius-sm);
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #00c837, #00e040);
+  color: #ffffff;
+  font-weight: 800;
+  box-shadow: 0 0 24px rgba(0, 200, 55, 0.4), 0 4px 16px rgba(0,0,0,0.4);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #00e040, #5fff8a);
+  transform: translateY(-2px);
+  box-shadow: 0 0 40px rgba(0, 224, 64, 0.6), 0 6px 24px rgba(0,0,0,0.4);
+}
+
+.btn-primary:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: #a0c8a0;
+  border: 1px solid var(--border2);
+}
+
+.btn-ghost:hover {
+  border-color: var(--accent);
+  color: var(--accent2);
+  box-shadow: 0 0 12px rgba(0, 224, 64, 0.15);
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: 'Syne', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.tag-accent { background: var(--accent-glow); color: var(--accent2); border: 1px solid rgba(0,224,64,0.3); }
+.tag-green { background: var(--green-dim); color: var(--green); border: 1px solid rgba(0,230,118,0.3); }
+.tag-yellow { background: var(--yellow-dim); color: var(--yellow); border: 1px solid rgba(255,215,64,0.3); }
+.tag-red { background: var(--red-dim); color: var(--red); border: 1px solid rgba(255,82,82,0.3); }
+
+textarea, input {
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius-sm);
+  color: #ffffff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  padding: 12px 16px;
+  width: 100%;
+  resize: vertical;
+  transition: border-color 0.2s;
+  outline: none;
+}
+
+textarea:focus, input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(0, 224, 64, 0.15);
+}
+
+textarea::placeholder, input::placeholder { color: var(--text3); }
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, var(--surface2) 25%, var(--surface3) 50%, var(--surface2) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--radius-sm);
+}
