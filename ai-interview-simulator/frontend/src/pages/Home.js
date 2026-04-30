@@ -3,28 +3,28 @@ import { useNavigate } from "react-router-dom";
 import { generateQuestions } from "../api";
 
 const ROLES = [
-  { id: "Frontend Developer", icon: "🖥️", desc: "React, CSS, JS, Browser APIs" },
-  { id: "Backend Developer", icon: "⚙️", desc: "Node.js, APIs, Databases, System Design" },
-  { id: "Java Developer", icon: "☕", desc: "OOP, Spring, Collections, Multithreading" },
-  { id: "Data Structures & Algorithms", icon: "🧮", desc: "Arrays, Trees, Graphs, DP, Sorting" },
-  { id: "Full Stack Developer", icon: "🔗", desc: "End-to-end development, both layers" },
-  { id: "HR Round", icon: "🤝", desc: "Behavioural, Situational, Culture Fit" },
-  { id: "Python Developer", icon: "🐍", desc: "Python, OOP, Libraries, Scripting" },
-  { id: "DevOps Engineer", icon: "🚀", desc: "CI/CD, Docker, Kubernetes, Cloud" },
+  { id: "Frontend Developer", tag: "FE", desc: "React, CSS, JS, Browser APIs" },
+  { id: "Backend Developer", tag: "BE", desc: "Node.js, APIs, Databases, System Design" },
+  { id: "Java Developer", tag: "JV", desc: "OOP, Spring, Collections, Multithreading" },
+  { id: "Data Structures & Algorithms", tag: "DS", desc: "Arrays, Trees, Graphs, DP, Sorting" },
+  { id: "Full Stack Developer", tag: "FS", desc: "End-to-end development, both layers" },
+  { id: "HR Round", tag: "HR", desc: "Behavioural, Situational, Culture Fit" },
+  { id: "Python Developer", tag: "PY", desc: "Python, OOP, Libraries, Scripting" },
+  { id: "DevOps Engineer", tag: "DO", desc: "CI/CD, Docker, Kubernetes, Cloud" },
 ];
 
 const MODES = [
   {
     id: "mcq",
-    icon: "🔘",
-    title: "MCQ Based",
-    desc: "Choose from 4 options per question. Instant correct / wrong result shown after each answer.",
+    tag: "MCQ",
+    title: "Multiple Choice",
+    desc: "Choose from 4 options per question. Instant result shown after each answer.",
   },
   {
     id: "theory",
-    icon: "✍️",
+    tag: "TXT",
     title: "Theory Based",
-    desc: "Type your answer in detail. Get AI feedback with strengths, weaknesses & improvement tips.",
+    desc: "Type your answer in detail. Get AI feedback with strengths, gaps, and improvement tips.",
   },
 ];
 
@@ -99,61 +99,100 @@ export default function Home() {
   };
 
   return (
-    <div style={{ maxWidth: "900px", margin: "0 auto", padding: "48px 24px" }}>
+    <div style={{ maxWidth: "860px", margin: "0 auto", padding: "56px 24px" }}>
+
       {/* Hero */}
-      <div style={{ textAlign: "center", marginBottom: "56px" }}>
+      <div style={{ marginBottom: "64px" }}>
         <div style={{
           display: "inline-flex", alignItems: "center", gap: "8px",
-          padding: "6px 16px", background: "var(--accent-glow)",
-          border: "1px solid rgba(124,106,247,0.3)", borderRadius: "20px", marginBottom: "24px",
+          padding: "4px 12px",
+          background: "rgba(0,255,133,0.06)",
+          border: "1px solid rgba(0,255,133,0.2)",
+          borderRadius: "3px", marginBottom: "28px",
         }}>
-          <span style={{ fontSize: "12px", color: "var(--accent2)", fontFamily: "Syne, sans-serif", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em" }}>
-            ✨ AI-Powered Interview Practice
+          <span style={{
+            fontSize: "11px", color: "var(--accent)",
+            fontFamily: "Space Mono, monospace", fontWeight: 700,
+            textTransform: "uppercase", letterSpacing: "0.1em"
+          }}>
+            AI-Powered Interview Practice
           </span>
         </div>
-        <h1 style={{ fontSize: "clamp(36px, 6vw, 60px)", fontWeight: 800, marginBottom: "16px", lineHeight: 1.1, color: "#ffffff" }}>
+        <h1 style={{
+          fontSize: "clamp(32px, 5vw, 52px)", fontWeight: 700,
+          marginBottom: "16px", lineHeight: 1.1, color: "#ffffff",
+          fontFamily: "Space Mono, monospace",
+        }}>
           Ace Your Next<br />
-          <span style={{ color: "var(--accent2)" }}>Tech Interview</span>
+          <span style={{ color: "var(--accent)" }}>Tech Interview_</span>
         </h1>
-        <p style={{ color: "var(--accent2)", fontSize: "17px", maxWidth: "520px", margin: "0 auto" }}>
-          Practice with AI-generated questions tailored to your role and resume. Get instant feedback, scores, and improvement tips.
+        <p style={{ color: "var(--text2)", fontSize: "15px", maxWidth: "480px", lineHeight: 1.7 }}>
+          Practice with AI-generated questions tailored to your role and resume.
+          Get instant feedback, scores, and improvement tips.
         </p>
       </div>
 
       {/* Step 01 — Role */}
-      <div style={{ marginBottom: "40px" }}>
-        <h2 style={{ fontSize: "18px", marginBottom: "20px", display: "flex", alignItems: "center", gap: "10px" }}>
-          <span style={{ color: "var(--accent)" }}>01</span>
-          <span style={{ color: "#ffffff" }}>Select Your Role</span>
-        </h2>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: "12px" }}>
-          {ROLES.map((role) => (
-            <div
-              key={role.id}
-              onClick={() => setSelectedRole(role.id)}
-              style={{
-                padding: "18px", borderRadius: "var(--radius)",
-                border: `1px solid ${selectedRole === role.id ? "var(--accent)" : "var(--border)"}`,
-                background: selectedRole === role.id ? "rgba(124,106,247,0.08)" : "var(--surface)",
-                cursor: "pointer", transition: "all 0.2s",
-                boxShadow: selectedRole === role.id ? "var(--shadow-accent)" : "none",
-              }}
-            >
-              <div style={{ fontSize: "28px", marginBottom: "10px" }}>{role.icon}</div>
-              <div style={{ fontFamily: "Syne, sans-serif", fontWeight: 700, fontSize: "14px", marginBottom: "6px", color: "#ffffff" }}>{role.id}</div>
-              <div style={{ color: "#888888", fontSize: "12px", lineHeight: 1.4 }}>{role.desc}</div>
-            </div>
-          ))}
+      <div style={{ marginBottom: "48px" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
+          <span style={{
+            fontFamily: "Space Mono, monospace", fontSize: "11px",
+            color: "var(--accent)", fontWeight: 700, letterSpacing: "0.1em"
+          }}>01</span>
+          <span style={{ color: "#fff", fontSize: "13px", fontFamily: "Space Mono, monospace", fontWeight: 700, letterSpacing: "0.04em" }}>SELECT ROLE</span>
+          <div style={{ flex: 1, height: "1px", background: "var(--border2)" }} />
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(190px, 1fr))", gap: "8px" }}>
+          {ROLES.map((role) => {
+            const isSelected = selectedRole === role.id;
+            return (
+              <div
+                key={role.id}
+                onClick={() => setSelectedRole(role.id)}
+                style={{
+                  padding: "16px 18px",
+                  borderRadius: "var(--radius)",
+                  border: `1px solid ${isSelected ? "var(--accent)" : "var(--border2)"}`,
+                  background: isSelected ? "rgba(0,255,133,0.05)" : "#111111",
+                  cursor: "pointer", transition: "all 0.15s",
+                  boxShadow: isSelected ? "var(--shadow-accent)" : "none",
+                }}
+              >
+                <div style={{
+                  display: "inline-block",
+                  padding: "2px 8px",
+                  background: isSelected ? "var(--accent)" : "var(--surface3)",
+                  borderRadius: "3px",
+                  fontFamily: "Space Mono, monospace",
+                  fontSize: "10px", fontWeight: 700,
+                  color: isSelected ? "#000" : "var(--text2)",
+                  marginBottom: "10px",
+                  letterSpacing: "0.06em",
+                }}>{role.tag}</div>
+                <div style={{
+                  fontFamily: "Space Mono, monospace", fontWeight: 700,
+                  fontSize: "12px", marginBottom: "6px",
+                  color: isSelected ? "#fff" : "#cccccc",
+                  letterSpacing: "0.02em",
+                }}>{role.id}</div>
+                <div style={{ color: "var(--text2)", fontSize: "11px", lineHeight: 1.5 }}>{role.desc}</div>
+              </div>
+            );
+          })}
         </div>
       </div>
 
       {/* Step 02 — Mode */}
-      <div style={{ marginBottom: "40px" }}>
-        <h2 style={{ fontSize: "18px", marginBottom: "20px", display: "flex", alignItems: "center", gap: "10px" }}>
-          <span style={{ color: "var(--accent)" }}>02</span>
-          <span style={{ color: "#ffffff" }}>Choose Interview Mode</span>
-        </h2>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
+      <div style={{ marginBottom: "48px" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
+          <span style={{
+            fontFamily: "Space Mono, monospace", fontSize: "11px",
+            color: "var(--accent)", fontWeight: 700, letterSpacing: "0.1em"
+          }}>02</span>
+          <span style={{ color: "#fff", fontSize: "13px", fontFamily: "Space Mono, monospace", fontWeight: 700, letterSpacing: "0.04em" }}>SELECT MODE</span>
+          <div style={{ flex: 1, height: "1px", background: "var(--border2)" }} />
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px" }}>
           {MODES.map((mode) => {
             const isSelected = selectedMode === mode.id;
             return (
@@ -161,27 +200,41 @@ export default function Home() {
                 key={mode.id}
                 onClick={() => setSelectedMode(mode.id)}
                 style={{
-                  padding: "24px", borderRadius: "var(--radius)",
-                  border: `2px solid ${isSelected ? "var(--accent)" : "var(--border)"}`,
-                  background: isSelected ? "rgba(124,106,247,0.08)" : "var(--surface)",
-                  cursor: "pointer", transition: "all 0.2s",
+                  padding: "22px 20px",
+                  borderRadius: "var(--radius)",
+                  border: `1px solid ${isSelected ? "var(--accent)" : "var(--border2)"}`,
+                  background: isSelected ? "rgba(0,255,133,0.05)" : "#111111",
+                  cursor: "pointer", transition: "all 0.15s",
                   boxShadow: isSelected ? "var(--shadow-accent)" : "none",
                   position: "relative",
                 }}
               >
                 {isSelected && (
                   <div style={{
-                    position: "absolute", top: "12px", right: "12px",
-                    width: "20px", height: "20px", borderRadius: "50%",
-                    background: "var(--accent)", display: "flex", alignItems: "center", justifyContent: "center",
-                    fontSize: "11px", color: "#fff", fontWeight: 700,
+                    position: "absolute", top: "14px", right: "14px",
+                    width: "18px", height: "18px", borderRadius: "2px",
+                    background: "var(--accent)", display: "flex",
+                    alignItems: "center", justifyContent: "center",
+                    fontSize: "10px", color: "#000", fontWeight: 700,
+                    fontFamily: "Space Mono, monospace",
                   }}>✓</div>
                 )}
-                <div style={{ fontSize: "32px", marginBottom: "12px" }}>{mode.icon}</div>
-                <div style={{ fontFamily: "Syne, sans-serif", fontWeight: 700, fontSize: "16px", color: "#ffffff", marginBottom: "8px" }}>
-                  {mode.title}
-                </div>
-                <div style={{ color: "#888888", fontSize: "13px", lineHeight: 1.5 }}>{mode.desc}</div>
+                <div style={{
+                  display: "inline-block",
+                  padding: "2px 8px",
+                  background: isSelected ? "var(--accent)" : "var(--surface3)",
+                  borderRadius: "3px",
+                  fontFamily: "Space Mono, monospace",
+                  fontSize: "10px", fontWeight: 700,
+                  color: isSelected ? "#000" : "var(--text2)",
+                  marginBottom: "12px",
+                  letterSpacing: "0.06em",
+                }}>{mode.tag}</div>
+                <div style={{
+                  fontFamily: "Space Mono, monospace", fontWeight: 700,
+                  fontSize: "14px", color: "#ffffff", marginBottom: "8px",
+                }}>{mode.title}</div>
+                <div style={{ color: "var(--text2)", fontSize: "12px", lineHeight: 1.6 }}>{mode.desc}</div>
               </div>
             );
           })}
@@ -189,14 +242,16 @@ export default function Home() {
       </div>
 
       {/* Step 03 — Resume */}
-      <div style={{ marginBottom: "40px" }}>
-        <h2 style={{ fontSize: "18px", marginBottom: "8px", display: "flex", alignItems: "center", gap: "10px" }}>
-          <span style={{ color: "var(--accent)" }}>03</span>
-          <span style={{ color: "#ffffff" }}>Upload Your Resume</span>
-          <span style={{ color: "var(--text3)", fontSize: "13px", fontFamily: "DM Sans, sans-serif", fontWeight: 400 }}>
-            (optional — personalizes your questions)
-          </span>
-        </h2>
+      <div style={{ marginBottom: "48px" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
+          <span style={{
+            fontFamily: "Space Mono, monospace", fontSize: "11px",
+            color: "var(--accent)", fontWeight: 700, letterSpacing: "0.1em"
+          }}>03</span>
+          <span style={{ color: "#fff", fontSize: "13px", fontFamily: "Space Mono, monospace", fontWeight: 700, letterSpacing: "0.04em" }}>UPLOAD RESUME</span>
+          <span style={{ color: "var(--text3)", fontSize: "11px", fontFamily: "Space Mono, monospace" }}>// optional</span>
+          <div style={{ flex: 1, height: "1px", background: "var(--border2)" }} />
+        </div>
 
         {!fileName ? (
           <div
@@ -205,47 +260,60 @@ export default function Home() {
             onDrop={handleDrop}
             onClick={() => fileInputRef.current.click()}
             style={{
-              marginTop: "12px",
-              border: `2px dashed ${dragging ? "var(--accent)" : "var(--border2)"}`,
-              borderRadius: "var(--radius)", padding: "48px 24px", textAlign: "center",
-              cursor: "pointer", background: dragging ? "rgba(124,106,247,0.05)" : "var(--surface)",
-              transition: "all 0.2s",
+              border: `1px dashed ${dragging ? "var(--accent)" : "var(--border2)"}`,
+              borderRadius: "var(--radius)", padding: "44px 24px", textAlign: "center",
+              cursor: "pointer", background: dragging ? "rgba(0,255,133,0.03)" : "#0d0d0d",
+              transition: "all 0.15s",
             }}
           >
-            <div style={{ fontSize: "40px", marginBottom: "12px" }}>📄</div>
-            <div style={{ fontFamily: "Syne, sans-serif", fontWeight: 700, fontSize: "15px", marginBottom: "8px", color: "#ffffff" }}>
-              Drop your resume here or click to browse
-            </div>
-            <div style={{ color: "#888888", fontSize: "13px" }}>Supports PDF and TXT files · Max 5MB</div>
             <div style={{
-              display: "inline-flex", alignItems: "center", gap: "6px", marginTop: "16px",
-              padding: "8px 20px", background: "var(--surface2)", border: "1px solid var(--border2)",
-              borderRadius: "var(--radius-sm)", color: "var(--text2)", fontSize: "13px",
-              fontFamily: "Syne, sans-serif", fontWeight: 600,
-            }}>📁 Choose File</div>
+              fontFamily: "Space Mono, monospace", fontWeight: 700,
+              fontSize: "13px", marginBottom: "8px", color: "#cccccc",
+              letterSpacing: "0.02em",
+            }}>
+              Drop resume here or click to browse
+            </div>
+            <div style={{ color: "var(--text3)", fontSize: "11px", fontFamily: "Space Mono, monospace" }}>
+              PDF or TXT &nbsp;&bull;&nbsp; max 5MB
+            </div>
+            <div style={{
+              display: "inline-flex", alignItems: "center", gap: "6px", marginTop: "18px",
+              padding: "8px 18px", background: "#1a1a1a", border: "1px solid var(--border2)",
+              borderRadius: "var(--radius)", color: "var(--text2)", fontSize: "12px",
+              fontFamily: "Space Mono, monospace", fontWeight: 700,
+            }}>Choose File</div>
             <input ref={fileInputRef} type="file" accept=".pdf,.txt" onChange={handleFileInput} style={{ display: "none" }} />
           </div>
         ) : (
           <div style={{
-            marginTop: "12px", display: "flex", alignItems: "center", gap: "16px",
-            padding: "18px 20px", background: "var(--green-dim)",
-            border: "1px solid rgba(61,214,140,0.3)", borderRadius: "var(--radius)",
+            display: "flex", alignItems: "center", gap: "16px",
+            padding: "16px 20px", background: "rgba(0,255,133,0.05)",
+            border: "1px solid rgba(0,255,133,0.2)", borderRadius: "var(--radius)",
           }}>
-            <div style={{ fontSize: "32px" }}>✅</div>
+            <div style={{
+              width: "32px", height: "32px", borderRadius: "3px",
+              background: "var(--accent)", display: "flex", alignItems: "center",
+              justifyContent: "center", fontSize: "11px", color: "#000", fontWeight: 700,
+              fontFamily: "Space Mono, monospace", flexShrink: 0,
+            }}>OK</div>
             <div style={{ flex: 1 }}>
-              <div style={{ fontFamily: "Syne, sans-serif", fontWeight: 700, color: "var(--green)", fontSize: "14px" }}>
-                Resume uploaded successfully
+              <div style={{
+                fontFamily: "Space Mono, monospace", fontWeight: 700,
+                color: "var(--accent)", fontSize: "12px",
+              }}>
+                Resume loaded
               </div>
-              <div style={{ color: "var(--text2)", fontSize: "13px", marginTop: "3px" }}>
-                {fileName} · Questions will be personalized to your background
+              <div style={{ color: "var(--text2)", fontSize: "11px", marginTop: "3px", fontFamily: "Space Mono, monospace" }}>
+                {fileName} &nbsp;&mdash;&nbsp; questions will be personalized
               </div>
             </div>
             <button
               onClick={handleRemoveFile}
               style={{
-                background: "transparent", border: "1px solid rgba(240,98,106,0.4)",
-                borderRadius: "var(--radius-sm)", color: "var(--red)", padding: "6px 14px",
-                cursor: "pointer", fontSize: "13px", fontFamily: "Syne, sans-serif", fontWeight: 600,
+                background: "transparent", border: "1px solid rgba(255,77,77,0.3)",
+                borderRadius: "var(--radius)", color: "var(--red)", padding: "6px 14px",
+                cursor: "pointer", fontSize: "11px",
+                fontFamily: "Space Mono, monospace", fontWeight: 700,
               }}
             >Remove</button>
           </div>
@@ -254,23 +322,28 @@ export default function Home() {
 
       {/* Error */}
       {error && (
-        <div style={{ padding: "14px 18px", background: "var(--red-dim)", border: "1px solid rgba(240,98,106,0.3)", borderRadius: "var(--radius-sm)", color: "var(--red)", marginBottom: "24px" }}>
-          ⚠ {error}
+        <div style={{
+          padding: "12px 16px", background: "var(--red-dim)",
+          border: "1px solid rgba(255,77,77,0.25)", borderRadius: "var(--radius)",
+          color: "var(--red)", marginBottom: "24px",
+          fontFamily: "Space Mono, monospace", fontSize: "12px",
+        }}>
+          ERR: {error}
         </div>
       )}
 
       {/* Start Button */}
-      <div style={{ display: "flex", justifyContent: "center" }}>
+      <div style={{ display: "flex", justifyContent: "flex-start" }}>
         <button
           className="btn btn-primary"
           onClick={handleStart}
           disabled={!selectedRole || !selectedMode || loading}
-          style={{ fontSize: "16px", padding: "16px 48px" }}
+          style={{ fontSize: "13px", padding: "14px 36px", letterSpacing: "0.04em" }}
         >
           {loading ? (
-            <><span style={{ display: "inline-block", animation: "spin 1s linear infinite" }}>⟳</span> Generating Questions…</>
+            <><span style={{ display: "inline-block", animation: "spin 1s linear infinite" }}>+</span>&nbsp;Generating questions...</>
           ) : (
-            <>🎯 Start Interview — {selectedRole || "Select a role"}</>
+            <>Run Interview {selectedRole ? `// ${selectedRole}` : "// select role first"}</>
           )}
         </button>
       </div>
